@@ -34,7 +34,7 @@ while (true) {
             console.log("Runde: " + score);
 
         }else{
-            console.log("Dein score war "+score+" Danke fürs spielen");
+            console.log("Dein Score war "+score+". Danke fürs spielen!");
             break;
         }
         
