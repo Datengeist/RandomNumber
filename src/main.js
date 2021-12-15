@@ -1,17 +1,46 @@
 const prompt = require("prompt-sync")();
 
-//fürt funktion aus uns speichert in variable
-let randon = random();
+let score = 1;
 //user wird gefragt
-let userzahl = prompt("An welche Zahl denke ich");
-//wird getestet ob richtig
-if(randon===Number(userzahl)){
-    console.log("richtig!");
-}else{
-    console.log("falsch sie war " + randon);
-}
 
+//wird getestet ob richtig
+while (true) {
+    
+    let randon = random(score);
+    let userzahl = prompt("An welche Zahl denke ich?");
+    
+    if(randon===Number(userzahl)){
+        console.log("richtig!");
+        score++;
+
+        let weiter = prompt("Sollen wir weiter machen? (true/false)")
+
+        if (["true", "ja", "yes", "wahr"].includes(weiter.toLowerCase())){
+            console.log("Runde: " + score);
+        }else{
+            console.log("Dein score war "+score+" Danke fürs spielen");
+            break;
+        }
+        
+    }else{
+        console.log("falsch sie war " + randon);
+
+        let weiter = prompt("Sollen wir weiter machen? (true/false)")
+
+         if (["true", "ja", "yes", "wahr"].includes(weiter.toLowerCase())){
+
+            if (score !== 0) score --;
+
+            console.log("Runde: " + score);
+
+        }else{
+            console.log("Dein score war "+score+" Danke fürs spielen");
+            break;
+        }
+        
+    }
+}
 //e
-function random(){ 
-    return Math.floor(Math.random() * 2 + 1);
+function random(max){ 
+    return Math.floor(Math.random() * max);
 }
