@@ -2,48 +2,55 @@ const prompt = require("prompt-sync")();
 
 let score = 1;
 let highscore = 1;
-//user wird gefragt
 
-function randon(max){ 
+//Generiert die zufällige Zahl
+function generateRandom(max){ 
     return Math.floor(Math.random() * max);
 }
 
-//wird getestet ob richtig
 while (true) {
     
-    let random = randon(score);
-    let userzahl = prompt("An welche Zahl denke ich?");
+    //Fragt den nutzer, was er denkt, was die Zahl ist
+    let randomNumber = generateRandom(score);
+    let userzahl = prompt("An welche Zahl denke ich?\t");
     
-    if(random===Number(userzahl)){
+    //Vergleicht die vom Nutzer gegebene Zahl mit der zufällig generierten Zahl 
+    if(randomNumber===Number(userzahl)){
+
+        //Richtig Fall
         console.log("richtig!");
         score++;
 
+        //aktualisiert den Highscore falls nötig
         if(score > highscore){
             highscore = score;
         }
 
-        let weiter = prompt("Sollen wir weiter machen? (true/false)")
+        //Fragt nach weiterspiel
+        const weiter = prompt("Sollen wir weiter machen? (true/false)\t");
 
         if (["true", "ja", "yes", "wahr"].includes(weiter.toLowerCase())){
             console.log("Runde: " + score);
         }else{
-            console.log("Score: " + (score-1) + "\nHighscore: " + (highscore-1) + "\nDanke fürs spielen!");
+            console.log("Score: " + (score - 1) + "\nHighscore: " + (highscore - 1) + "\nDanke fürs spielen!");
             break;
         }
         
     }else{
-        console.log("falsch sie war " + random + "\nHighscore: " + (highscore-1));
+        //Falsch Fall
+        console.log("falsch sie war " + randomNumber + "\nHighscore: " + (highscore-1));
 
-        let weiter = prompt("Sollen wir weiter machen? (true/false)")
+        //Fragt nach weiterspiel
+        const weiter = prompt("Sollen wir weiter machen? (true/false)\t");
 
          if (["true", "ja", "yes", "wahr"].includes(weiter.toLowerCase())){
 
             score = 0;
 
-            console.log("Runde: " + (score-1) + "\nHighscore: " + (highscores-1));
+            console.log("Runde: " + (score) + "\nHighscore: " + (highscore - 1));
 
         }else{
-            console.log("Score: " + (score-1) + "\nHighscore: " + (highscore-1) + "\nDanke fürs spielen!");
+            console.log("Score: " + (score - 1) + "\nHighscore: " + (highscore - 1) + "\nDanke fürs spielen!");
             break;
         }
         
