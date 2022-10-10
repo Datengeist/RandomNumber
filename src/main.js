@@ -1,46 +1,53 @@
 const prompt = require("prompt-sync")();
 
 let score = 1;
+let highscore = 1;
 //user wird gefragt
+
+function randon(max){ 
+    return Math.floor(Math.random() * max);
+}
 
 //wird getestet ob richtig
 while (true) {
     
-    let randon = random(score);
+    let random = randon(score);
     let userzahl = prompt("An welche Zahl denke ich?");
     
-    if(randon===Number(userzahl)){
+    if(random===Number(userzahl)){
         console.log("richtig!");
         score++;
+
+        if(score > highscore){
+            highscore = score;
+        }
 
         let weiter = prompt("Sollen wir weiter machen? (true/false)")
 
         if (["true", "ja", "yes", "wahr"].includes(weiter.toLowerCase())){
             console.log("Runde: " + score);
         }else{
-            console.log("Dein score war "+score+" Danke fürs spielen");
+            console.log("Score: " + (score-1) + "\nHighscore: " + (highscore-1) + "\nDanke fürs spielen!");
             break;
         }
         
     }else{
-        console.log("falsch sie war " + randon);
+        console.log("falsch sie war " + random + "\nHighscore: " + (highscore-1));
 
         let weiter = prompt("Sollen wir weiter machen? (true/false)")
 
          if (["true", "ja", "yes", "wahr"].includes(weiter.toLowerCase())){
 
-            if (score !== 0) score --;
+            score = 0;
 
-            console.log("Runde: " + score);
+            console.log("Runde: " + (score-1) + "\nHighscore: " + (highscores-1));
 
         }else{
-            console.log("Dein Score war "+score+". Danke fürs spielen!");
+            console.log("Score: " + (score-1) + "\nHighscore: " + (highscore-1) + "\nDanke fürs spielen!");
             break;
         }
         
     }
 }
-//e
-function random(max){ 
-    return Math.floor(Math.random() * max);
-}
+
+
